@@ -48,9 +48,54 @@ class MyHomePage extends StatelessWidget {
               elevation: 5,
             ),
           ),
-          Card(
-            color: Colors.red,
-            child: Text('LIST OF TX!'),
+          Column(
+            children: transactions.map((txn) {
+              return Card(
+                child: Row(
+                  children: <Widget>[
+                    Container(
+                      margin: EdgeInsets.symmetric(
+                        vertical: 10,
+                        horizontal: 15,
+                      ),
+                      padding: EdgeInsets.all(10),
+                      decoration: BoxDecoration(
+                        border: Border.all(
+                          color: Colors.purple,
+                          width: 2,
+                        ),
+                      ),
+                      child: Text(
+                        txn.amount.toString(),
+                        style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 20,
+                          color: Colors.purple,
+                        ),
+                      ),
+                    ),
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: <Widget>[
+                        Text(
+                          txn.title,
+                          style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            fontSize: 16,
+                          ),
+                        ),
+                        Text(
+                          txn.date.toString(),
+                          style: TextStyle(
+                            color: Colors.grey,
+                          ),
+                        ),
+                      ],
+                    )
+                  ],
+                ),
+              );
+            }).toList(),
           )
         ],
       ),
